@@ -1,0 +1,12 @@
+[Unit]
+Description=Ssserver container startup
+Author=Me
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a ssserver-go
+ExecStop=/usr/bin/docker stop -t 2 ssserver-go
+
+[Install]
+WantedBy=default.target
