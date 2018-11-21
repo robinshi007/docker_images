@@ -1,6 +1,7 @@
 
 echo "==========================="
 echo " ShadowSocks Server is up:"
+echo " "$(shadowsocks-server -version)
 echo " port    : $SS_SERVER_PORT"
 echo " password: $SS_PASSWORD"
 echo " method  : $SS_METHOD"

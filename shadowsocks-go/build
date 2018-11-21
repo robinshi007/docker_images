@@ -1,4 +1,4 @@
 #!/bin/bash
 
-docker build -t shadowsocks-go .
+sudo docker build -t shadowsocks-go .
 

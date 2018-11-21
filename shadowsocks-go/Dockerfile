@@ -1,7 +1,7 @@
 FROM golang:alpine
 MAINTAINER Robin Shi <robinshi@outlook.com>
 
-RUN apk add --update bash  git && rm -rf /var/cache/apk/*
+RUN apk add --update bash git && rm -rf /var/cache/apk/*
 RUN go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-server
 
 ENV SS_SERVER_ADDR 0.0.0.0
