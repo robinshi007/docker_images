@@ -1,6 +1,5 @@
-# https://github.com/docker-library/postgres/blob/master/10/alpine/Dockerfile
 # vim:set ft=dockerfile:
-FROM alpine:3.6
+FROM alpine:3.8
 
 # alpine includes "postgres" user/group in base install
 #   /etc/passwd:22:postgres:x:70:70::/var/lib/postgresql:/bin/sh
@@ -23,8 +22,8 @@ ENV LANG en_US.utf8
 RUN mkdir /docker-entrypoint-initdb.d
 
 ENV PG_MAJOR 10
-ENV PG_VERSION 10.1
-ENV PG_SHA256 3ccb4e25fe7a7ea6308dea103cac202963e6b746697366d72ec2900449a5e713
+ENV PG_VERSION 10.6
+ENV PG_SHA256 68a8276f08bda8fbefe562faaf8831cb20664a7a1d3ffdbbcc5b83e08637624b
 
 RUN set -ex \
 	\
@@ -67,6 +66,7 @@ RUN set -ex \
 #		tcl-dev \
 		util-linux-dev \
 		zlib-dev \
+		icu-dev \
 	\
 	&& cd /usr/src/postgresql \
 # update "DEFAULT_PGSOCKET_DIR" to "/var/run/postgresql" (matching Debian)
@@ -109,6 +109,7 @@ RUN set -ex \
 		--with-openssl \
 		--with-libxml \
 		--with-libxslt \
+		--with-icu \
 	&& make -j "$(nproc)" world \
 	&& make install-world \
 	&& make -C contrib install \
@@ -144,7 +145,7 @@ RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PG
 VOLUME /var/lib/postgresql/data
 
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN ln -s /usr/local/bin/docker-entrypoint.sh /
+RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 5432
