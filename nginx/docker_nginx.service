@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/docker start -a nginx
-ExecStop=/usr/bin/docker stop -t 2 nginx
+ExecStart=/usr/bin/docker start -a nginx_inst01
+ExecStop=/usr/bin/docker stop -t 2 nginx_inst01
 
 [Install]
 WantedBy=default.target

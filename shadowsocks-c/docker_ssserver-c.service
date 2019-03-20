@@ -5,8 +5,8 @@ After=docker.service
 
 [Service]
 Restart=always
-ExecStart=/usr/bin/docker start -a ssserver-go_inst01
-ExecStop=/usr/bin/docker stop -t 2 ssserver-go_inst01
+ExecStart=/usr/bin/docker start -a ssserver-c_inst01
+ExecStop=/usr/bin/docker stop -t 2 ssserver-c_inst01
 
 [Install]
 WantedBy=default.target
