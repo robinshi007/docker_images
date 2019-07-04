@@ -23,13 +23,14 @@ services:
     image: grafana/promtail:master
     volumes:
       - /home/robin/projects/docker_images/prom-loki-grafana/promtail:/etc/promtail
-      - /var/log:/var/log
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
     command: -config.file=/etc/promtail/promtail-docker-config.yaml
     networks:
       - monitor-net
       
   grafana:
-    image: grafana/grafana:5.4.2
+    image: grafana/grafana:6.0.2
     env_file:
       - config
     volumes:

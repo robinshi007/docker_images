@@ -1,2 +1,3 @@
 env.list
 /nginx/conf
+promtail-targets.yaml
